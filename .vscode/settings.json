@@ -1,0 +1,6 @@
+{
+    "clangd.path": "C:/HighTec/toolchains/tricore/v11.0.0/bin/clangd.exe",
+    "clangd.arguments": ["--query-driver=C:/HighTec/toolchains/tricore/v11.0.0/bin/*,C:/HighTec/toolchains/tricore/v4.9.4.1/bin/*", "--compile-commands-dir=_iROM_TC334_LK_TCXX4_V1_0_GCC"],
+    "clangd.onConfigChanged": "restart",
+    "clangd.onConfigChangedForceEnable": true
+}

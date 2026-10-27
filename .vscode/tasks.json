@@ -1,0 +1,536 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "#### [ Active Config ] # Build",
+            "type": "shell",
+            "windows": {
+                "options": { "shell": { "executable": "powershell.exe", "args": ["-NoProfile", "-NoLogo", "-NonInteractive"] } },
+                "command": "if (Test-Path .vscode/settings.json) { [IO.File]::WriteAllText((Resolve-Path .vscode/settings.json).Path, ([IO.File]::ReadAllText((Resolve-Path .vscode/settings.json).Path) -creplace '--compile-commands-dir=[^\\x22]*', ('--compile-commands-dir=' + ('${command:cpptools.activeConfigName}' -replace '^#### ', '')))) }; make -j8 -s -f makefile -C \"('${command:cpptools.activeConfigName}' -replace '^#### ', '')\" build"
+            },
+            "linux": {
+                "command": "sed -i \"s|--compile-commands-dir=[^\\x22]*|--compile-commands-dir=$(echo \"${command:cpptools.activeConfigName}\" | sed \"s/^#### //\")|\" .vscode/settings.json 2>/dev/null || true && make -j8 -s -f makefile -C \"$(echo '${command:cpptools.activeConfigName}' | sed 's/^#### //')\" build"
+            },
+            "group": { "kind": "build" },
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": { "base": "$gcc", "fileLocation": ["absolute"] },
+            "presentation": { "showReuseMessage": false, "echo": false, "clear": false, "panel": "shared", "focus": true, "close": false }
+        },
+        {
+            "label": "#### [ Active Config ] # ReBuild",
+            "type": "shell",
+            "windows": {
+                "options": { "shell": { "executable": "powershell.exe", "args": ["-NoProfile", "-NoLogo", "-NonInteractive"] } },
+                "command": "if (Test-Path .vscode/settings.json) { [IO.File]::WriteAllText((Resolve-Path .vscode/settings.json).Path, ([IO.File]::ReadAllText((Resolve-Path .vscode/settings.json).Path) -creplace '--compile-commands-dir=[^\\x22]*', ('--compile-commands-dir=' + ('${command:cpptools.activeConfigName}' -replace '^#### ', '')))) }; make -j8 -s -f makefile -C \"('${command:cpptools.activeConfigName}' -replace '^#### ', '')\" rebuild"
+            },
+            "linux": {
+                "command": "sed -i \"s|--compile-commands-dir=[^\\x22]*|--compile-commands-dir=$(echo \"${command:cpptools.activeConfigName}\" | sed \"s/^#### //\")|\" .vscode/settings.json 2>/dev/null || true && make -j8 -s -f makefile -C \"$(echo '${command:cpptools.activeConfigName}' | sed 's/^#### //')\" rebuild"
+            },
+            "group": { "kind": "build" },
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": { "base": "$gcc", "fileLocation": ["absolute"] },
+            "presentation": { "showReuseMessage": false, "echo": false, "clear": false, "panel": "shared", "focus": true, "close": false }
+        },
+        {
+            "label": "#### [ Active Config ] # Install",
+            "type": "shell",
+            "windows": {
+                "options": { "shell": { "executable": "powershell.exe", "args": ["-NoProfile", "-NoLogo", "-NonInteractive"] } },
+                "command": "if (Test-Path .vscode/settings.json) { [IO.File]::WriteAllText((Resolve-Path .vscode/settings.json).Path, ([IO.File]::ReadAllText((Resolve-Path .vscode/settings.json).Path) -creplace '--compile-commands-dir=[^\\x22]*', ('--compile-commands-dir=' + ('${command:cpptools.activeConfigName}' -replace '^#### ', '')))) }; make -j8 -s -f makefile -C \"('${command:cpptools.activeConfigName}' -replace '^#### ', '')\" install"
+            },
+            "linux": {
+                "command": "sed -i \"s|--compile-commands-dir=[^\\x22]*|--compile-commands-dir=$(echo \"${command:cpptools.activeConfigName}\" | sed \"s/^#### //\")|\" .vscode/settings.json 2>/dev/null || true && make -j8 -s -f makefile -C \"$(echo '${command:cpptools.activeConfigName}' | sed 's/^#### //')\" install"
+            },
+            "group": { "kind": "build" },
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": { "base": "$gcc", "fileLocation": ["absolute"] },
+            "presentation": { "showReuseMessage": false, "echo": false, "clear": false, "panel": "shared", "focus": true, "close": false }
+        },
+        {
+            "label": "#### [ Active Config ] # ReInstall",
+            "type": "shell",
+            "windows": {
+                "options": { "shell": { "executable": "powershell.exe", "args": ["-NoProfile", "-NoLogo", "-NonInteractive"] } },
+                "command": "if (Test-Path .vscode/settings.json) { [IO.File]::WriteAllText((Resolve-Path .vscode/settings.json).Path, ([IO.File]::ReadAllText((Resolve-Path .vscode/settings.json).Path) -creplace '--compile-commands-dir=[^\\x22]*', ('--compile-commands-dir=' + ('${command:cpptools.activeConfigName}' -replace '^#### ', '')))) }; make -j8 -s -f makefile -C \"('${command:cpptools.activeConfigName}' -replace '^#### ', '')\" reinstall"
+            },
+            "linux": {
+                "command": "sed -i \"s|--compile-commands-dir=[^\\x22]*|--compile-commands-dir=$(echo \"${command:cpptools.activeConfigName}\" | sed \"s/^#### //\")|\" .vscode/settings.json 2>/dev/null || true && make -j8 -s -f makefile -C \"$(echo '${command:cpptools.activeConfigName}' | sed 's/^#### //')\" reinstall"
+            },
+            "group": { "kind": "build" },
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": { "base": "$gcc", "fileLocation": ["absolute"] },
+            "presentation": { "showReuseMessage": false, "echo": false, "clear": false, "panel": "shared", "focus": true, "close": false }
+        },
+        {
+            "label": "#### [ Active Config ] # Clean",
+            "type": "shell",
+            "windows": {
+                "options": { "shell": { "executable": "powershell.exe", "args": ["-NoProfile", "-NoLogo", "-NonInteractive"] } },
+                "command": "if (Test-Path .vscode/settings.json) { [IO.File]::WriteAllText((Resolve-Path .vscode/settings.json).Path, ([IO.File]::ReadAllText((Resolve-Path .vscode/settings.json).Path) -creplace '--compile-commands-dir=[^\\x22]*', ('--compile-commands-dir=' + ('${command:cpptools.activeConfigName}' -replace '^#### ', '')))) }; make -j8 -s -f makefile -C \"('${command:cpptools.activeConfigName}' -replace '^#### ', '')\" clean"
+            },
+            "linux": {
+                "command": "sed -i \"s|--compile-commands-dir=[^\\x22]*|--compile-commands-dir=$(echo \"${command:cpptools.activeConfigName}\" | sed \"s/^#### //\")|\" .vscode/settings.json 2>/dev/null || true && make -j8 -s -f makefile -C \"$(echo '${command:cpptools.activeConfigName}' | sed 's/^#### //')\" clean"
+            },
+            "group": { "kind": "build" },
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": { "base": "$gcc", "fileLocation": ["absolute"] },
+            "presentation": { "showReuseMessage": false, "echo": false, "clear": false, "panel": "shared", "focus": true, "close": false }
+        },
+        {
+            "label": "#### [ All Configs ] # Build",
+            "dependsOn": [
+                "#### _iROM_TC39X_TB_TC3X9_V2_0_LLVM # Build",
+                "#### _iROM_TC39X_TB_TC3X9_V2_0_GCC # Build",
+                "#### _iROM_TC397_AK_TC3X7_V2_0_LLVM # Build",
+                "#### _iROM_TC397_AK_TC3X7_V2_0_GCC # Build",
+                "#### _iROM_TC334_LK_TCXX4_V1_0_LLVM # Build",
+                "#### _iROM_TC334_LK_TCXX4_V1_0_GCC # Build"
+            ],
+            "dependsOrder": "sequence",
+            "group": { "kind": "build" },
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": { "base": "$gcc", "fileLocation": ["absolute"] },
+            "presentation": { "showReuseMessage": false, "echo": false, "clear": false, "panel": "shared", "focus": true, "close": false }
+        },
+        {
+            "label": "#### [ All Configs ] # ReBuild",
+            "dependsOn": ["#### [ All Configs ] # Clean", "#### [ All Configs ] # Build"],
+            "dependsOrder": "sequence",
+            "group": { "kind": "build" },
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": { "base": "$gcc", "fileLocation": ["absolute"] },
+            "presentation": { "showReuseMessage": false, "echo": false, "clear": false, "panel": "shared", "focus": true, "close": false }
+        },
+        {
+            "label": "#### [ All Configs ] # Install",
+            "dependsOn": [
+                "#### _iROM_TC39X_TB_TC3X9_V2_0_LLVM # Install",
+                "#### _iROM_TC39X_TB_TC3X9_V2_0_GCC # Install",
+                "#### _iROM_TC397_AK_TC3X7_V2_0_LLVM # Install",
+                "#### _iROM_TC397_AK_TC3X7_V2_0_GCC # Install",
+                "#### _iROM_TC334_LK_TCXX4_V1_0_LLVM # Install",
+                "#### _iROM_TC334_LK_TCXX4_V1_0_GCC # Install"
+            ],
+            "dependsOrder": "sequence",
+            "group": { "kind": "build" },
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": { "base": "$gcc", "fileLocation": ["absolute"] },
+            "presentation": { "showReuseMessage": false, "echo": false, "clear": false, "panel": "shared", "focus": true, "close": false }
+        },
+        {
+            "label": "#### [ All Configs ] # ReInstall",
+            "dependsOn": ["#### [ All Configs ] # Clean", "#### [ All Configs ] # Install"],
+            "dependsOrder": "sequence",
+            "group": { "kind": "build" },
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": { "base": "$gcc", "fileLocation": ["absolute"] },
+            "presentation": { "showReuseMessage": false, "echo": false, "clear": false, "panel": "shared", "focus": true, "close": false }
+        },
+        {
+            "label": "#### [ All Configs ] # Clean",
+            "dependsOn": [
+                "#### _iROM_TC39X_TB_TC3X9_V2_0_LLVM # Clean",
+                "#### _iROM_TC39X_TB_TC3X9_V2_0_GCC # Clean",
+                "#### _iROM_TC397_AK_TC3X7_V2_0_LLVM # Clean",
+                "#### _iROM_TC397_AK_TC3X7_V2_0_GCC # Clean",
+                "#### _iROM_TC334_LK_TCXX4_V1_0_LLVM # Clean",
+                "#### _iROM_TC334_LK_TCXX4_V1_0_GCC # Clean"
+            ],
+            "dependsOrder": "sequence",
+            "group": { "kind": "build" },
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": { "base": "$gcc", "fileLocation": ["absolute"] },
+            "presentation": { "showReuseMessage": false, "echo": false, "clear": false, "panel": "shared", "focus": true, "close": false }
+        },
+        {
+            "label": "#### _iROM_TC39X_TB_TC3X9_V2_0_LLVM # Build",
+            "type": "shell",
+            "windows": {
+                "options": { "shell": { "executable": "powershell.exe", "args": ["-NoProfile", "-NoLogo", "-NonInteractive"] } },
+                "command": "if (Test-Path .vscode/settings.json) { [IO.File]::WriteAllText((Resolve-Path .vscode/settings.json).Path, ([IO.File]::ReadAllText((Resolve-Path .vscode/settings.json).Path) -creplace '--compile-commands-dir=[^\\x22]*', '--compile-commands-dir=_iROM_TC39X_TB_TC3X9_V2_0_LLVM')) }; make -j8 -s -f makefile -C \"_iROM_TC39X_TB_TC3X9_V2_0_LLVM\" build"
+            },
+            "linux": { "command": "sed -i 's|--compile-commands-dir=[^\\x22]*|--compile-commands-dir=_iROM_TC39X_TB_TC3X9_V2_0_LLVM|' .vscode/settings.json 2>/dev/null || true && make -j8 -s -f makefile -C \"_iROM_TC39X_TB_TC3X9_V2_0_LLVM\" build" },
+            "group": { "kind": "build" },
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": { "base": "$gcc", "fileLocation": ["absolute"] },
+            "presentation": { "showReuseMessage": false, "echo": false, "clear": false, "panel": "shared", "focus": true, "close": false }
+        },
+        {
+            "label": "#### _iROM_TC39X_TB_TC3X9_V2_0_LLVM # ReBuild",
+            "type": "shell",
+            "windows": {
+                "options": { "shell": { "executable": "powershell.exe", "args": ["-NoProfile", "-NoLogo", "-NonInteractive"] } },
+                "command": "if (Test-Path .vscode/settings.json) { [IO.File]::WriteAllText((Resolve-Path .vscode/settings.json).Path, ([IO.File]::ReadAllText((Resolve-Path .vscode/settings.json).Path) -creplace '--compile-commands-dir=[^\\x22]*', '--compile-commands-dir=_iROM_TC39X_TB_TC3X9_V2_0_LLVM')) }; make -j8 -s -f makefile -C \"_iROM_TC39X_TB_TC3X9_V2_0_LLVM\" rebuild"
+            },
+            "linux": { "command": "sed -i 's|--compile-commands-dir=[^\\x22]*|--compile-commands-dir=_iROM_TC39X_TB_TC3X9_V2_0_LLVM|' .vscode/settings.json 2>/dev/null || true && make -j8 -s -f makefile -C \"_iROM_TC39X_TB_TC3X9_V2_0_LLVM\" rebuild" },
+            "group": { "kind": "build" },
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": { "base": "$gcc", "fileLocation": ["absolute"] },
+            "presentation": { "showReuseMessage": false, "echo": false, "clear": false, "panel": "shared", "focus": true, "close": false }
+        },
+        {
+            "label": "#### _iROM_TC39X_TB_TC3X9_V2_0_LLVM # Install",
+            "type": "shell",
+            "windows": {
+                "options": { "shell": { "executable": "powershell.exe", "args": ["-NoProfile", "-NoLogo", "-NonInteractive"] } },
+                "command": "if (Test-Path .vscode/settings.json) { [IO.File]::WriteAllText((Resolve-Path .vscode/settings.json).Path, ([IO.File]::ReadAllText((Resolve-Path .vscode/settings.json).Path) -creplace '--compile-commands-dir=[^\\x22]*', '--compile-commands-dir=_iROM_TC39X_TB_TC3X9_V2_0_LLVM')) }; make -j8 -s -f makefile -C \"_iROM_TC39X_TB_TC3X9_V2_0_LLVM\" install"
+            },
+            "linux": { "command": "sed -i 's|--compile-commands-dir=[^\\x22]*|--compile-commands-dir=_iROM_TC39X_TB_TC3X9_V2_0_LLVM|' .vscode/settings.json 2>/dev/null || true && make -j8 -s -f makefile -C \"_iROM_TC39X_TB_TC3X9_V2_0_LLVM\" install" },
+            "group": { "kind": "build" },
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": { "base": "$gcc", "fileLocation": ["absolute"] },
+            "presentation": { "showReuseMessage": false, "echo": false, "clear": false, "panel": "shared", "focus": true, "close": false }
+        },
+        {
+            "label": "#### _iROM_TC39X_TB_TC3X9_V2_0_LLVM # ReInstall",
+            "type": "shell",
+            "windows": {
+                "options": { "shell": { "executable": "powershell.exe", "args": ["-NoProfile", "-NoLogo", "-NonInteractive"] } },
+                "command": "if (Test-Path .vscode/settings.json) { [IO.File]::WriteAllText((Resolve-Path .vscode/settings.json).Path, ([IO.File]::ReadAllText((Resolve-Path .vscode/settings.json).Path) -creplace '--compile-commands-dir=[^\\x22]*', '--compile-commands-dir=_iROM_TC39X_TB_TC3X9_V2_0_LLVM')) }; make -j8 -s -f makefile -C \"_iROM_TC39X_TB_TC3X9_V2_0_LLVM\" reinstall"
+            },
+            "linux": { "command": "sed -i 's|--compile-commands-dir=[^\\x22]*|--compile-commands-dir=_iROM_TC39X_TB_TC3X9_V2_0_LLVM|' .vscode/settings.json 2>/dev/null || true && make -j8 -s -f makefile -C \"_iROM_TC39X_TB_TC3X9_V2_0_LLVM\" reinstall" },
+            "group": { "kind": "build" },
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": { "base": "$gcc", "fileLocation": ["absolute"] },
+            "presentation": { "showReuseMessage": false, "echo": false, "clear": false, "panel": "shared", "focus": true, "close": false }
+        },
+        {
+            "label": "#### _iROM_TC39X_TB_TC3X9_V2_0_LLVM # Clean",
+            "type": "shell",
+            "windows": {
+                "options": { "shell": { "executable": "powershell.exe", "args": ["-NoProfile", "-NoLogo", "-NonInteractive"] } },
+                "command": "if (Test-Path .vscode/settings.json) { [IO.File]::WriteAllText((Resolve-Path .vscode/settings.json).Path, ([IO.File]::ReadAllText((Resolve-Path .vscode/settings.json).Path) -creplace '--compile-commands-dir=[^\\x22]*', '--compile-commands-dir=_iROM_TC39X_TB_TC3X9_V2_0_LLVM')) }; make -j8 -s -f makefile -C \"_iROM_TC39X_TB_TC3X9_V2_0_LLVM\" clean"
+            },
+            "linux": { "command": "sed -i 's|--compile-commands-dir=[^\\x22]*|--compile-commands-dir=_iROM_TC39X_TB_TC3X9_V2_0_LLVM|' .vscode/settings.json 2>/dev/null || true && make -j8 -s -f makefile -C \"_iROM_TC39X_TB_TC3X9_V2_0_LLVM\" clean" },
+            "group": { "kind": "build" },
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": { "base": "$gcc", "fileLocation": ["absolute"] },
+            "presentation": { "showReuseMessage": false, "echo": false, "clear": false, "panel": "shared", "focus": true, "close": false }
+        },
+        {
+            "label": "#### _iROM_TC39X_TB_TC3X9_V2_0_GCC # Build",
+            "type": "shell",
+            "windows": {
+                "options": { "shell": { "executable": "powershell.exe", "args": ["-NoProfile", "-NoLogo", "-NonInteractive"] } },
+                "command": "if (Test-Path .vscode/settings.json) { [IO.File]::WriteAllText((Resolve-Path .vscode/settings.json).Path, ([IO.File]::ReadAllText((Resolve-Path .vscode/settings.json).Path) -creplace '--compile-commands-dir=[^\\x22]*', '--compile-commands-dir=_iROM_TC39X_TB_TC3X9_V2_0_GCC')) }; make -j8 -s -f makefile -C \"_iROM_TC39X_TB_TC3X9_V2_0_GCC\" build"
+            },
+            "linux": { "command": "sed -i 's|--compile-commands-dir=[^\\x22]*|--compile-commands-dir=_iROM_TC39X_TB_TC3X9_V2_0_GCC|' .vscode/settings.json 2>/dev/null || true && make -j8 -s -f makefile -C \"_iROM_TC39X_TB_TC3X9_V2_0_GCC\" build" },
+            "group": { "kind": "build" },
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": { "base": "$gcc", "fileLocation": ["absolute"] },
+            "presentation": { "showReuseMessage": false, "echo": false, "clear": false, "panel": "shared", "focus": true, "close": false }
+        },
+        {
+            "label": "#### _iROM_TC39X_TB_TC3X9_V2_0_GCC # ReBuild",
+            "type": "shell",
+            "windows": {
+                "options": { "shell": { "executable": "powershell.exe", "args": ["-NoProfile", "-NoLogo", "-NonInteractive"] } },
+                "command": "if (Test-Path .vscode/settings.json) { [IO.File]::WriteAllText((Resolve-Path .vscode/settings.json).Path, ([IO.File]::ReadAllText((Resolve-Path .vscode/settings.json).Path) -creplace '--compile-commands-dir=[^\\x22]*', '--compile-commands-dir=_iROM_TC39X_TB_TC3X9_V2_0_GCC')) }; make -j8 -s -f makefile -C \"_iROM_TC39X_TB_TC3X9_V2_0_GCC\" rebuild"
+            },
+            "linux": { "command": "sed -i 's|--compile-commands-dir=[^\\x22]*|--compile-commands-dir=_iROM_TC39X_TB_TC3X9_V2_0_GCC|' .vscode/settings.json 2>/dev/null || true && make -j8 -s -f makefile -C \"_iROM_TC39X_TB_TC3X9_V2_0_GCC\" rebuild" },
+            "group": { "kind": "build" },
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": { "base": "$gcc", "fileLocation": ["absolute"] },
+            "presentation": { "showReuseMessage": false, "echo": false, "clear": false, "panel": "shared", "focus": true, "close": false }
+        },
+        {
+            "label": "#### _iROM_TC39X_TB_TC3X9_V2_0_GCC # Install",
+            "type": "shell",
+            "windows": {
+                "options": { "shell": { "executable": "powershell.exe", "args": ["-NoProfile", "-NoLogo", "-NonInteractive"] } },
+                "command": "if (Test-Path .vscode/settings.json) { [IO.File]::WriteAllText((Resolve-Path .vscode/settings.json).Path, ([IO.File]::ReadAllText((Resolve-Path .vscode/settings.json).Path) -creplace '--compile-commands-dir=[^\\x22]*', '--compile-commands-dir=_iROM_TC39X_TB_TC3X9_V2_0_GCC')) }; make -j8 -s -f makefile -C \"_iROM_TC39X_TB_TC3X9_V2_0_GCC\" install"
+            },
+            "linux": { "command": "sed -i 's|--compile-commands-dir=[^\\x22]*|--compile-commands-dir=_iROM_TC39X_TB_TC3X9_V2_0_GCC|' .vscode/settings.json 2>/dev/null || true && make -j8 -s -f makefile -C \"_iROM_TC39X_TB_TC3X9_V2_0_GCC\" install" },
+            "group": { "kind": "build" },
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": { "base": "$gcc", "fileLocation": ["absolute"] },
+            "presentation": { "showReuseMessage": false, "echo": false, "clear": false, "panel": "shared", "focus": true, "close": false }
+        },
+        {
+            "label": "#### _iROM_TC39X_TB_TC3X9_V2_0_GCC # ReInstall",
+            "type": "shell",
+            "windows": {
+                "options": { "shell": { "executable": "powershell.exe", "args": ["-NoProfile", "-NoLogo", "-NonInteractive"] } },
+                "command": "if (Test-Path .vscode/settings.json) { [IO.File]::WriteAllText((Resolve-Path .vscode/settings.json).Path, ([IO.File]::ReadAllText((Resolve-Path .vscode/settings.json).Path) -creplace '--compile-commands-dir=[^\\x22]*', '--compile-commands-dir=_iROM_TC39X_TB_TC3X9_V2_0_GCC')) }; make -j8 -s -f makefile -C \"_iROM_TC39X_TB_TC3X9_V2_0_GCC\" reinstall"
+            },
+            "linux": { "command": "sed -i 's|--compile-commands-dir=[^\\x22]*|--compile-commands-dir=_iROM_TC39X_TB_TC3X9_V2_0_GCC|' .vscode/settings.json 2>/dev/null || true && make -j8 -s -f makefile -C \"_iROM_TC39X_TB_TC3X9_V2_0_GCC\" reinstall" },
+            "group": { "kind": "build" },
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": { "base": "$gcc", "fileLocation": ["absolute"] },
+            "presentation": { "showReuseMessage": false, "echo": false, "clear": false, "panel": "shared", "focus": true, "close": false }
+        },
+        {
+            "label": "#### _iROM_TC39X_TB_TC3X9_V2_0_GCC # Clean",
+            "type": "shell",
+            "windows": {
+                "options": { "shell": { "executable": "powershell.exe", "args": ["-NoProfile", "-NoLogo", "-NonInteractive"] } },
+                "command": "if (Test-Path .vscode/settings.json) { [IO.File]::WriteAllText((Resolve-Path .vscode/settings.json).Path, ([IO.File]::ReadAllText((Resolve-Path .vscode/settings.json).Path) -creplace '--compile-commands-dir=[^\\x22]*', '--compile-commands-dir=_iROM_TC39X_TB_TC3X9_V2_0_GCC')) }; make -j8 -s -f makefile -C \"_iROM_TC39X_TB_TC3X9_V2_0_GCC\" clean"
+            },
+            "linux": { "command": "sed -i 's|--compile-commands-dir=[^\\x22]*|--compile-commands-dir=_iROM_TC39X_TB_TC3X9_V2_0_GCC|' .vscode/settings.json 2>/dev/null || true && make -j8 -s -f makefile -C \"_iROM_TC39X_TB_TC3X9_V2_0_GCC\" clean" },
+            "group": { "kind": "build" },
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": { "base": "$gcc", "fileLocation": ["absolute"] },
+            "presentation": { "showReuseMessage": false, "echo": false, "clear": false, "panel": "shared", "focus": true, "close": false }
+        },
+        {
+            "label": "#### _iROM_TC397_AK_TC3X7_V2_0_LLVM # Build",
+            "type": "shell",
+            "windows": {
+                "options": { "shell": { "executable": "powershell.exe", "args": ["-NoProfile", "-NoLogo", "-NonInteractive"] } },
+                "command": "if (Test-Path .vscode/settings.json) { [IO.File]::WriteAllText((Resolve-Path .vscode/settings.json).Path, ([IO.File]::ReadAllText((Resolve-Path .vscode/settings.json).Path) -creplace '--compile-commands-dir=[^\\x22]*', '--compile-commands-dir=_iROM_TC397_AK_TC3X7_V2_0_LLVM')) }; make -j8 -s -f makefile -C \"_iROM_TC397_AK_TC3X7_V2_0_LLVM\" build"
+            },
+            "linux": { "command": "sed -i 's|--compile-commands-dir=[^\\x22]*|--compile-commands-dir=_iROM_TC397_AK_TC3X7_V2_0_LLVM|' .vscode/settings.json 2>/dev/null || true && make -j8 -s -f makefile -C \"_iROM_TC397_AK_TC3X7_V2_0_LLVM\" build" },
+            "group": { "kind": "build" },
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": { "base": "$gcc", "fileLocation": ["absolute"] },
+            "presentation": { "showReuseMessage": false, "echo": false, "clear": false, "panel": "shared", "focus": true, "close": false }
+        },
+        {
+            "label": "#### _iROM_TC397_AK_TC3X7_V2_0_LLVM # ReBuild",
+            "type": "shell",
+            "windows": {
+                "options": { "shell": { "executable": "powershell.exe", "args": ["-NoProfile", "-NoLogo", "-NonInteractive"] } },
+                "command": "if (Test-Path .vscode/settings.json) { [IO.File]::WriteAllText((Resolve-Path .vscode/settings.json).Path, ([IO.File]::ReadAllText((Resolve-Path .vscode/settings.json).Path) -creplace '--compile-commands-dir=[^\\x22]*', '--compile-commands-dir=_iROM_TC397_AK_TC3X7_V2_0_LLVM')) }; make -j8 -s -f makefile -C \"_iROM_TC397_AK_TC3X7_V2_0_LLVM\" rebuild"
+            },
+            "linux": { "command": "sed -i 's|--compile-commands-dir=[^\\x22]*|--compile-commands-dir=_iROM_TC397_AK_TC3X7_V2_0_LLVM|' .vscode/settings.json 2>/dev/null || true && make -j8 -s -f makefile -C \"_iROM_TC397_AK_TC3X7_V2_0_LLVM\" rebuild" },
+            "group": { "kind": "build" },
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": { "base": "$gcc", "fileLocation": ["absolute"] },
+            "presentation": { "showReuseMessage": false, "echo": false, "clear": false, "panel": "shared", "focus": true, "close": false }
+        },
+        {
+            "label": "#### _iROM_TC397_AK_TC3X7_V2_0_LLVM # Install",
+            "type": "shell",
+            "windows": {
+                "options": { "shell": { "executable": "powershell.exe", "args": ["-NoProfile", "-NoLogo", "-NonInteractive"] } },
+                "command": "if (Test-Path .vscode/settings.json) { [IO.File]::WriteAllText((Resolve-Path .vscode/settings.json).Path, ([IO.File]::ReadAllText((Resolve-Path .vscode/settings.json).Path) -creplace '--compile-commands-dir=[^\\x22]*', '--compile-commands-dir=_iROM_TC397_AK_TC3X7_V2_0_LLVM')) }; make -j8 -s -f makefile -C \"_iROM_TC397_AK_TC3X7_V2_0_LLVM\" install"
+            },
+            "linux": { "command": "sed -i 's|--compile-commands-dir=[^\\x22]*|--compile-commands-dir=_iROM_TC397_AK_TC3X7_V2_0_LLVM|' .vscode/settings.json 2>/dev/null || true && make -j8 -s -f makefile -C \"_iROM_TC397_AK_TC3X7_V2_0_LLVM\" install" },
+            "group": { "kind": "build" },
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": { "base": "$gcc", "fileLocation": ["absolute"] },
+            "presentation": { "showReuseMessage": false, "echo": false, "clear": false, "panel": "shared", "focus": true, "close": false }
+        },
+        {
+            "label": "#### _iROM_TC397_AK_TC3X7_V2_0_LLVM # ReInstall",
+            "type": "shell",
+            "windows": {
+                "options": { "shell": { "executable": "powershell.exe", "args": ["-NoProfile", "-NoLogo", "-NonInteractive"] } },
+                "command": "if (Test-Path .vscode/settings.json) { [IO.File]::WriteAllText((Resolve-Path .vscode/settings.json).Path, ([IO.File]::ReadAllText((Resolve-Path .vscode/settings.json).Path) -creplace '--compile-commands-dir=[^\\x22]*', '--compile-commands-dir=_iROM_TC397_AK_TC3X7_V2_0_LLVM')) }; make -j8 -s -f makefile -C \"_iROM_TC397_AK_TC3X7_V2_0_LLVM\" reinstall"
+            },
+            "linux": { "command": "sed -i 's|--compile-commands-dir=[^\\x22]*|--compile-commands-dir=_iROM_TC397_AK_TC3X7_V2_0_LLVM|' .vscode/settings.json 2>/dev/null || true && make -j8 -s -f makefile -C \"_iROM_TC397_AK_TC3X7_V2_0_LLVM\" reinstall" },
+            "group": { "kind": "build" },
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": { "base": "$gcc", "fileLocation": ["absolute"] },
+            "presentation": { "showReuseMessage": false, "echo": false, "clear": false, "panel": "shared", "focus": true, "close": false }
+        },
+        {
+            "label": "#### _iROM_TC397_AK_TC3X7_V2_0_LLVM # Clean",
+            "type": "shell",
+            "windows": {
+                "options": { "shell": { "executable": "powershell.exe", "args": ["-NoProfile", "-NoLogo", "-NonInteractive"] } },
+                "command": "if (Test-Path .vscode/settings.json) { [IO.File]::WriteAllText((Resolve-Path .vscode/settings.json).Path, ([IO.File]::ReadAllText((Resolve-Path .vscode/settings.json).Path) -creplace '--compile-commands-dir=[^\\x22]*', '--compile-commands-dir=_iROM_TC397_AK_TC3X7_V2_0_LLVM')) }; make -j8 -s -f makefile -C \"_iROM_TC397_AK_TC3X7_V2_0_LLVM\" clean"
+            },
+            "linux": { "command": "sed -i 's|--compile-commands-dir=[^\\x22]*|--compile-commands-dir=_iROM_TC397_AK_TC3X7_V2_0_LLVM|' .vscode/settings.json 2>/dev/null || true && make -j8 -s -f makefile -C \"_iROM_TC397_AK_TC3X7_V2_0_LLVM\" clean" },
+            "group": { "kind": "build" },
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": { "base": "$gcc", "fileLocation": ["absolute"] },
+            "presentation": { "showReuseMessage": false, "echo": false, "clear": false, "panel": "shared", "focus": true, "close": false }
+        },
+        {
+            "label": "#### _iROM_TC397_AK_TC3X7_V2_0_GCC # Build",
+            "type": "shell",
+            "windows": {
+                "options": { "shell": { "executable": "powershell.exe", "args": ["-NoProfile", "-NoLogo", "-NonInteractive"] } },
+                "command": "if (Test-Path .vscode/settings.json) { [IO.File]::WriteAllText((Resolve-Path .vscode/settings.json).Path, ([IO.File]::ReadAllText((Resolve-Path .vscode/settings.json).Path) -creplace '--compile-commands-dir=[^\\x22]*', '--compile-commands-dir=_iROM_TC397_AK_TC3X7_V2_0_GCC')) }; make -j8 -s -f makefile -C \"_iROM_TC397_AK_TC3X7_V2_0_GCC\" build"
+            },
+            "linux": { "command": "sed -i 's|--compile-commands-dir=[^\\x22]*|--compile-commands-dir=_iROM_TC397_AK_TC3X7_V2_0_GCC|' .vscode/settings.json 2>/dev/null || true && make -j8 -s -f makefile -C \"_iROM_TC397_AK_TC3X7_V2_0_GCC\" build" },
+            "group": { "kind": "build" },
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": { "base": "$gcc", "fileLocation": ["absolute"] },
+            "presentation": { "showReuseMessage": false, "echo": false, "clear": false, "panel": "shared", "focus": true, "close": false }
+        },
+        {
+            "label": "#### _iROM_TC397_AK_TC3X7_V2_0_GCC # ReBuild",
+            "type": "shell",
+            "windows": {
+                "options": { "shell": { "executable": "powershell.exe", "args": ["-NoProfile", "-NoLogo", "-NonInteractive"] } },
+                "command": "if (Test-Path .vscode/settings.json) { [IO.File]::WriteAllText((Resolve-Path .vscode/settings.json).Path, ([IO.File]::ReadAllText((Resolve-Path .vscode/settings.json).Path) -creplace '--compile-commands-dir=[^\\x22]*', '--compile-commands-dir=_iROM_TC397_AK_TC3X7_V2_0_GCC')) }; make -j8 -s -f makefile -C \"_iROM_TC397_AK_TC3X7_V2_0_GCC\" rebuild"
+            },
+            "linux": { "command": "sed -i 's|--compile-commands-dir=[^\\x22]*|--compile-commands-dir=_iROM_TC397_AK_TC3X7_V2_0_GCC|' .vscode/settings.json 2>/dev/null || true && make -j8 -s -f makefile -C \"_iROM_TC397_AK_TC3X7_V2_0_GCC\" rebuild" },
+            "group": { "kind": "build" },
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": { "base": "$gcc", "fileLocation": ["absolute"] },
+            "presentation": { "showReuseMessage": false, "echo": false, "clear": false, "panel": "shared", "focus": true, "close": false }
+        },
+        {
+            "label": "#### _iROM_TC397_AK_TC3X7_V2_0_GCC # Install",
+            "type": "shell",
+            "windows": {
+                "options": { "shell": { "executable": "powershell.exe", "args": ["-NoProfile", "-NoLogo", "-NonInteractive"] } },
+                "command": "if (Test-Path .vscode/settings.json) { [IO.File]::WriteAllText((Resolve-Path .vscode/settings.json).Path, ([IO.File]::ReadAllText((Resolve-Path .vscode/settings.json).Path) -creplace '--compile-commands-dir=[^\\x22]*', '--compile-commands-dir=_iROM_TC397_AK_TC3X7_V2_0_GCC')) }; make -j8 -s -f makefile -C \"_iROM_TC397_AK_TC3X7_V2_0_GCC\" install"
+            },
+            "linux": { "command": "sed -i 's|--compile-commands-dir=[^\\x22]*|--compile-commands-dir=_iROM_TC397_AK_TC3X7_V2_0_GCC|' .vscode/settings.json 2>/dev/null || true && make -j8 -s -f makefile -C \"_iROM_TC397_AK_TC3X7_V2_0_GCC\" install" },
+            "group": { "kind": "build" },
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": { "base": "$gcc", "fileLocation": ["absolute"] },
+            "presentation": { "showReuseMessage": false, "echo": false, "clear": false, "panel": "shared", "focus": true, "close": false }
+        },
+        {
+            "label": "#### _iROM_TC397_AK_TC3X7_V2_0_GCC # ReInstall",
+            "type": "shell",
+            "windows": {
+                "options": { "shell": { "executable": "powershell.exe", "args": ["-NoProfile", "-NoLogo", "-NonInteractive"] } },
+                "command": "if (Test-Path .vscode/settings.json) { [IO.File]::WriteAllText((Resolve-Path .vscode/settings.json).Path, ([IO.File]::ReadAllText((Resolve-Path .vscode/settings.json).Path) -creplace '--compile-commands-dir=[^\\x22]*', '--compile-commands-dir=_iROM_TC397_AK_TC3X7_V2_0_GCC')) }; make -j8 -s -f makefile -C \"_iROM_TC397_AK_TC3X7_V2_0_GCC\" reinstall"
+            },
+            "linux": { "command": "sed -i 's|--compile-commands-dir=[^\\x22]*|--compile-commands-dir=_iROM_TC397_AK_TC3X7_V2_0_GCC|' .vscode/settings.json 2>/dev/null || true && make -j8 -s -f makefile -C \"_iROM_TC397_AK_TC3X7_V2_0_GCC\" reinstall" },
+            "group": { "kind": "build" },
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": { "base": "$gcc", "fileLocation": ["absolute"] },
+            "presentation": { "showReuseMessage": false, "echo": false, "clear": false, "panel": "shared", "focus": true, "close": false }
+        },
+        {
+            "label": "#### _iROM_TC397_AK_TC3X7_V2_0_GCC # Clean",
+            "type": "shell",
+            "windows": {
+                "options": { "shell": { "executable": "powershell.exe", "args": ["-NoProfile", "-NoLogo", "-NonInteractive"] } },
+                "command": "if (Test-Path .vscode/settings.json) { [IO.File]::WriteAllText((Resolve-Path .vscode/settings.json).Path, ([IO.File]::ReadAllText((Resolve-Path .vscode/settings.json).Path) -creplace '--compile-commands-dir=[^\\x22]*', '--compile-commands-dir=_iROM_TC397_AK_TC3X7_V2_0_GCC')) }; make -j8 -s -f makefile -C \"_iROM_TC397_AK_TC3X7_V2_0_GCC\" clean"
+            },
+            "linux": { "command": "sed -i 's|--compile-commands-dir=[^\\x22]*|--compile-commands-dir=_iROM_TC397_AK_TC3X7_V2_0_GCC|' .vscode/settings.json 2>/dev/null || true && make -j8 -s -f makefile -C \"_iROM_TC397_AK_TC3X7_V2_0_GCC\" clean" },
+            "group": { "kind": "build" },
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": { "base": "$gcc", "fileLocation": ["absolute"] },
+            "presentation": { "showReuseMessage": false, "echo": false, "clear": false, "panel": "shared", "focus": true, "close": false }
+        },
+        {
+            "label": "#### _iROM_TC334_LK_TCXX4_V1_0_LLVM # Build",
+            "type": "shell",
+            "windows": {
+                "options": { "shell": { "executable": "powershell.exe", "args": ["-NoProfile", "-NoLogo", "-NonInteractive"] } },
+                "command": "if (Test-Path .vscode/settings.json) { [IO.File]::WriteAllText((Resolve-Path .vscode/settings.json).Path, ([IO.File]::ReadAllText((Resolve-Path .vscode/settings.json).Path) -creplace '--compile-commands-dir=[^\\x22]*', '--compile-commands-dir=_iROM_TC334_LK_TCXX4_V1_0_LLVM')) }; make -j8 -s -f makefile -C \"_iROM_TC334_LK_TCXX4_V1_0_LLVM\" build"
+            },
+            "linux": { "command": "sed -i 's|--compile-commands-dir=[^\\x22]*|--compile-commands-dir=_iROM_TC334_LK_TCXX4_V1_0_LLVM|' .vscode/settings.json 2>/dev/null || true && make -j8 -s -f makefile -C \"_iROM_TC334_LK_TCXX4_V1_0_LLVM\" build" },
+            "group": { "kind": "build" },
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": { "base": "$gcc", "fileLocation": ["absolute"] },
+            "presentation": { "showReuseMessage": false, "echo": false, "clear": false, "panel": "shared", "focus": true, "close": false }
+        },
+        {
+            "label": "#### _iROM_TC334_LK_TCXX4_V1_0_LLVM # ReBuild",
+            "type": "shell",
+            "windows": {
+                "options": { "shell": { "executable": "powershell.exe", "args": ["-NoProfile", "-NoLogo", "-NonInteractive"] } },
+                "command": "if (Test-Path .vscode/settings.json) { [IO.File]::WriteAllText((Resolve-Path .vscode/settings.json).Path, ([IO.File]::ReadAllText((Resolve-Path .vscode/settings.json).Path) -creplace '--compile-commands-dir=[^\\x22]*', '--compile-commands-dir=_iROM_TC334_LK_TCXX4_V1_0_LLVM')) }; make -j8 -s -f makefile -C \"_iROM_TC334_LK_TCXX4_V1_0_LLVM\" rebuild"
+            },
+            "linux": { "command": "sed -i 's|--compile-commands-dir=[^\\x22]*|--compile-commands-dir=_iROM_TC334_LK_TCXX4_V1_0_LLVM|' .vscode/settings.json 2>/dev/null || true && make -j8 -s -f makefile -C \"_iROM_TC334_LK_TCXX4_V1_0_LLVM\" rebuild" },
+            "group": { "kind": "build" },
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": { "base": "$gcc", "fileLocation": ["absolute"] },
+            "presentation": { "showReuseMessage": false, "echo": false, "clear": false, "panel": "shared", "focus": true, "close": false }
+        },
+        {
+            "label": "#### _iROM_TC334_LK_TCXX4_V1_0_LLVM # Install",
+            "type": "shell",
+            "windows": {
+                "options": { "shell": { "executable": "powershell.exe", "args": ["-NoProfile", "-NoLogo", "-NonInteractive"] } },
+                "command": "if (Test-Path .vscode/settings.json) { [IO.File]::WriteAllText((Resolve-Path .vscode/settings.json).Path, ([IO.File]::ReadAllText((Resolve-Path .vscode/settings.json).Path) -creplace '--compile-commands-dir=[^\\x22]*', '--compile-commands-dir=_iROM_TC334_LK_TCXX4_V1_0_LLVM')) }; make -j8 -s -f makefile -C \"_iROM_TC334_LK_TCXX4_V1_0_LLVM\" install"
+            },
+            "linux": { "command": "sed -i 's|--compile-commands-dir=[^\\x22]*|--compile-commands-dir=_iROM_TC334_LK_TCXX4_V1_0_LLVM|' .vscode/settings.json 2>/dev/null || true && make -j8 -s -f makefile -C \"_iROM_TC334_LK_TCXX4_V1_0_LLVM\" install" },
+            "group": { "kind": "build" },
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": { "base": "$gcc", "fileLocation": ["absolute"] },
+            "presentation": { "showReuseMessage": false, "echo": false, "clear": false, "panel": "shared", "focus": true, "close": false }
+        },
+        {
+            "label": "#### _iROM_TC334_LK_TCXX4_V1_0_LLVM # ReInstall",
+            "type": "shell",
+            "windows": {
+                "options": { "shell": { "executable": "powershell.exe", "args": ["-NoProfile", "-NoLogo", "-NonInteractive"] } },
+                "command": "if (Test-Path .vscode/settings.json) { [IO.File]::WriteAllText((Resolve-Path .vscode/settings.json).Path, ([IO.File]::ReadAllText((Resolve-Path .vscode/settings.json).Path) -creplace '--compile-commands-dir=[^\\x22]*', '--compile-commands-dir=_iROM_TC334_LK_TCXX4_V1_0_LLVM')) }; make -j8 -s -f makefile -C \"_iROM_TC334_LK_TCXX4_V1_0_LLVM\" reinstall"
+            },
+            "linux": { "command": "sed -i 's|--compile-commands-dir=[^\\x22]*|--compile-commands-dir=_iROM_TC334_LK_TCXX4_V1_0_LLVM|' .vscode/settings.json 2>/dev/null || true && make -j8 -s -f makefile -C \"_iROM_TC334_LK_TCXX4_V1_0_LLVM\" reinstall" },
+            "group": { "kind": "build" },
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": { "base": "$gcc", "fileLocation": ["absolute"] },
+            "presentation": { "showReuseMessage": false, "echo": false, "clear": false, "panel": "shared", "focus": true, "close": false }
+        },
+        {
+            "label": "#### _iROM_TC334_LK_TCXX4_V1_0_LLVM # Clean",
+            "type": "shell",
+            "windows": {
+                "options": { "shell": { "executable": "powershell.exe", "args": ["-NoProfile", "-NoLogo", "-NonInteractive"] } },
+                "command": "if (Test-Path .vscode/settings.json) { [IO.File]::WriteAllText((Resolve-Path .vscode/settings.json).Path, ([IO.File]::ReadAllText((Resolve-Path .vscode/settings.json).Path) -creplace '--compile-commands-dir=[^\\x22]*', '--compile-commands-dir=_iROM_TC334_LK_TCXX4_V1_0_LLVM')) }; make -j8 -s -f makefile -C \"_iROM_TC334_LK_TCXX4_V1_0_LLVM\" clean"
+            },
+            "linux": { "command": "sed -i 's|--compile-commands-dir=[^\\x22]*|--compile-commands-dir=_iROM_TC334_LK_TCXX4_V1_0_LLVM|' .vscode/settings.json 2>/dev/null || true && make -j8 -s -f makefile -C \"_iROM_TC334_LK_TCXX4_V1_0_LLVM\" clean" },
+            "group": { "kind": "build" },
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": { "base": "$gcc", "fileLocation": ["absolute"] },
+            "presentation": { "showReuseMessage": false, "echo": false, "clear": false, "panel": "shared", "focus": true, "close": false }
+        },
+        {
+            "label": "#### _iROM_TC334_LK_TCXX4_V1_0_GCC # Build",
+            "type": "shell",
+            "windows": {
+                "options": { "shell": { "executable": "powershell.exe", "args": ["-NoProfile", "-NoLogo", "-NonInteractive"] } },
+                "command": "if (Test-Path .vscode/settings.json) { [IO.File]::WriteAllText((Resolve-Path .vscode/settings.json).Path, ([IO.File]::ReadAllText((Resolve-Path .vscode/settings.json).Path) -creplace '--compile-commands-dir=[^\\x22]*', '--compile-commands-dir=_iROM_TC334_LK_TCXX4_V1_0_GCC')) }; make -j8 -s -f makefile -C \"_iROM_TC334_LK_TCXX4_V1_0_GCC\" build"
+            },
+            "linux": { "command": "sed -i 's|--compile-commands-dir=[^\\x22]*|--compile-commands-dir=_iROM_TC334_LK_TCXX4_V1_0_GCC|' .vscode/settings.json 2>/dev/null || true && make -j8 -s -f makefile -C \"_iROM_TC334_LK_TCXX4_V1_0_GCC\" build" },
+            "group": { "kind": "build" },
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": { "base": "$gcc", "fileLocation": ["absolute"] },
+            "presentation": { "showReuseMessage": false, "echo": false, "clear": false, "panel": "shared", "focus": true, "close": false }
+        },
+        {
+            "label": "#### _iROM_TC334_LK_TCXX4_V1_0_GCC # ReBuild",
+            "type": "shell",
+            "windows": {
+                "options": { "shell": { "executable": "powershell.exe", "args": ["-NoProfile", "-NoLogo", "-NonInteractive"] } },
+                "command": "if (Test-Path .vscode/settings.json) { [IO.File]::WriteAllText((Resolve-Path .vscode/settings.json).Path, ([IO.File]::ReadAllText((Resolve-Path .vscode/settings.json).Path) -creplace '--compile-commands-dir=[^\\x22]*', '--compile-commands-dir=_iROM_TC334_LK_TCXX4_V1_0_GCC')) }; make -j8 -s -f makefile -C \"_iROM_TC334_LK_TCXX4_V1_0_GCC\" rebuild"
+            },
+            "linux": { "command": "sed -i 's|--compile-commands-dir=[^\\x22]*|--compile-commands-dir=_iROM_TC334_LK_TCXX4_V1_0_GCC|' .vscode/settings.json 2>/dev/null || true && make -j8 -s -f makefile -C \"_iROM_TC334_LK_TCXX4_V1_0_GCC\" rebuild" },
+            "group": { "kind": "build" },
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": { "base": "$gcc", "fileLocation": ["absolute"] },
+            "presentation": { "showReuseMessage": false, "echo": false, "clear": false, "panel": "shared", "focus": true, "close": false }
+        },
+        {
+            "label": "#### _iROM_TC334_LK_TCXX4_V1_0_GCC # Install",
+            "type": "shell",
+            "windows": {
+                "options": { "shell": { "executable": "powershell.exe", "args": ["-NoProfile", "-NoLogo", "-NonInteractive"] } },
+                "command": "if (Test-Path .vscode/settings.json) { [IO.File]::WriteAllText((Resolve-Path .vscode/settings.json).Path, ([IO.File]::ReadAllText((Resolve-Path .vscode/settings.json).Path) -creplace '--compile-commands-dir=[^\\x22]*', '--compile-commands-dir=_iROM_TC334_LK_TCXX4_V1_0_GCC')) }; make -j8 -s -f makefile -C \"_iROM_TC334_LK_TCXX4_V1_0_GCC\" install"
+            },
+            "linux": { "command": "sed -i 's|--compile-commands-dir=[^\\x22]*|--compile-commands-dir=_iROM_TC334_LK_TCXX4_V1_0_GCC|' .vscode/settings.json 2>/dev/null || true && make -j8 -s -f makefile -C \"_iROM_TC334_LK_TCXX4_V1_0_GCC\" install" },
+            "group": { "kind": "build" },
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": { "base": "$gcc", "fileLocation": ["absolute"] },
+            "presentation": { "showReuseMessage": false, "echo": false, "clear": false, "panel": "shared", "focus": true, "close": false }
+        },
+        {
+            "label": "#### _iROM_TC334_LK_TCXX4_V1_0_GCC # ReInstall",
+            "type": "shell",
+            "windows": {
+                "options": { "shell": { "executable": "powershell.exe", "args": ["-NoProfile", "-NoLogo", "-NonInteractive"] } },
+                "command": "if (Test-Path .vscode/settings.json) { [IO.File]::WriteAllText((Resolve-Path .vscode/settings.json).Path, ([IO.File]::ReadAllText((Resolve-Path .vscode/settings.json).Path) -creplace '--compile-commands-dir=[^\\x22]*', '--compile-commands-dir=_iROM_TC334_LK_TCXX4_V1_0_GCC')) }; make -j8 -s -f makefile -C \"_iROM_TC334_LK_TCXX4_V1_0_GCC\" reinstall"
+            },
+            "linux": { "command": "sed -i 's|--compile-commands-dir=[^\\x22]*|--compile-commands-dir=_iROM_TC334_LK_TCXX4_V1_0_GCC|' .vscode/settings.json 2>/dev/null || true && make -j8 -s -f makefile -C \"_iROM_TC334_LK_TCXX4_V1_0_GCC\" reinstall" },
+            "group": { "kind": "build" },
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": { "base": "$gcc", "fileLocation": ["absolute"] },
+            "presentation": { "showReuseMessage": false, "echo": false, "clear": false, "panel": "shared", "focus": true, "close": false }
+        },
+        {
+            "label": "#### _iROM_TC334_LK_TCXX4_V1_0_GCC # Clean",
+            "type": "shell",
+            "windows": {
+                "options": { "shell": { "executable": "powershell.exe", "args": ["-NoProfile", "-NoLogo", "-NonInteractive"] } },
+                "command": "if (Test-Path .vscode/settings.json) { [IO.File]::WriteAllText((Resolve-Path .vscode/settings.json).Path, ([IO.File]::ReadAllText((Resolve-Path .vscode/settings.json).Path) -creplace '--compile-commands-dir=[^\\x22]*', '--compile-commands-dir=_iROM_TC334_LK_TCXX4_V1_0_GCC')) }; make -j8 -s -f makefile -C \"_iROM_TC334_LK_TCXX4_V1_0_GCC\" clean"
+            },
+            "linux": { "command": "sed -i 's|--compile-commands-dir=[^\\x22]*|--compile-commands-dir=_iROM_TC334_LK_TCXX4_V1_0_GCC|' .vscode/settings.json 2>/dev/null || true && make -j8 -s -f makefile -C \"_iROM_TC334_LK_TCXX4_V1_0_GCC\" clean" },
+            "group": { "kind": "build" },
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": { "base": "$gcc", "fileLocation": ["absolute"] },
+            "presentation": { "showReuseMessage": false, "echo": false, "clear": false, "panel": "shared", "focus": true, "close": false }
+        }
+    ]
+}

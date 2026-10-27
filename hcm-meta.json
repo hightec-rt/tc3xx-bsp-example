@@ -1,0 +1,7 @@
+{
+    "displayName": "TC3xx BSP example",
+    "abstract": "A BSP example is a small functional project designed to simplify an evaluation phase of the TC3xx microcontrollers. It comes with necessary low-level functions like a startup code, a minimalistic hardware abstraction and predefined memory partitioning. On top of this low-level implementation, it provides a reference application code running on all uC cores. This example variant supports the Tricore LLVM and GCC toolchain build systems",
+    "device": "TC3xx",
+    "tags": ["example", "aurix3g", "bsp", "LLVM", "GCC"],
+    "contentType": "ECLIPSE_GENPRJ_STD"
+}

@@ -1,0 +1,12 @@
+{
+    "version": 4,
+    "enableConfigurationSquiggles": true,
+    "configurations": [
+        { "name": "#### _iROM_TC39X_TB_TC3X9_V2_0_LLVM", "compilerPath": "C:/HighTec/toolchains/tricore/v11.0.0/bin/clang.exe", "compileCommands": "${workspaceFolder}/_iROM_TC39X_TB_TC3X9_V2_0_LLVM/compile_commands.json" },
+        { "name": "#### _iROM_TC39X_TB_TC3X9_V2_0_GCC", "compilerPath": "C:/HighTec/toolchains/tricore/v4.9.4.1/bin/tricore-gcc.exe", "compileCommands": "${workspaceFolder}/_iROM_TC39X_TB_TC3X9_V2_0_GCC/compile_commands.json" },
+        { "name": "#### _iROM_TC397_AK_TC3X7_V2_0_LLVM", "compilerPath": "C:/HighTec/toolchains/tricore/v11.0.0/bin/clang.exe", "compileCommands": "${workspaceFolder}/_iROM_TC397_AK_TC3X7_V2_0_LLVM/compile_commands.json" },
+        { "name": "#### _iROM_TC397_AK_TC3X7_V2_0_GCC", "compilerPath": "C:/HighTec/toolchains/tricore/v4.9.4.1/bin/tricore-gcc.exe", "compileCommands": "${workspaceFolder}/_iROM_TC397_AK_TC3X7_V2_0_GCC/compile_commands.json" },
+        { "name": "#### _iROM_TC334_LK_TCXX4_V1_0_LLVM", "compilerPath": "C:/HighTec/toolchains/tricore/v11.0.0/bin/clang.exe", "compileCommands": "${workspaceFolder}/_iROM_TC334_LK_TCXX4_V1_0_LLVM/compile_commands.json" },
+        { "name": "#### _iROM_TC334_LK_TCXX4_V1_0_GCC", "compilerPath": "C:/HighTec/toolchains/tricore/v4.9.4.1/bin/tricore-gcc.exe", "compileCommands": "${workspaceFolder}/_iROM_TC334_LK_TCXX4_V1_0_GCC/compile_commands.json" }
+    ]
+}
